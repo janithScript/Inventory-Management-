@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -37,9 +36,11 @@ const isDarkMode = () => {
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('inventory.index')">
-                                    <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800 dark:text-white"
-                                    />
+                                    <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl backdrop-blur-sm border border-indigo-500/20">
+                                        <svg class="h-6 w-6 text-indigo-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 7L16 3M16 3L12 7M16 3V13M4 17L8 21M8 21L12 17M8 21V11M3 12H7M17 12H21M7 12V16C7 17.6569 8.34315 19 10 19H14C15.6569 19 17 17.6569 17 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
                                 </Link>
                             </div>
 
