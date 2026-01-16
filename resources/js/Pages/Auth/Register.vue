@@ -24,88 +24,91 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register" />
 
+        <!-- Register Form -->
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-
+            <!-- Name Field -->
+            <div class="mb-5">
+                <InputLabel for="name" value="Full Name" class="block text-gray-300 mb-2 text-sm font-medium" />
                 <TextInput
                     id="name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                     v-model="form.name"
                     required
                     autofocus
                     autocomplete="name"
+                    placeholder="Enter your full name"
                 />
-
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2 text-red-400 text-xs" :message="form.errors.name" />
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-
+            <!-- Email Field -->
+            <div class="mb-5">
+                <InputLabel for="email" value="Email Address" class="block text-gray-300 mb-2 text-sm font-medium" />
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    placeholder="Enter your email"
                 />
-
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2 text-red-400 text-xs" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
+            <!-- Password Field -->
+            <div class="mb-5">
+                <InputLabel for="password" value="Password" class="block text-gray-300 mb-2 text-sm font-medium" />
                 <TextInput
                     id="password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                     v-model="form.password"
                     required
                     autocomplete="new-password"
+                    placeholder="Create a strong password"
                 />
-
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError class="mt-2 text-red-400 text-xs" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-
+            <!-- Confirm Password Field -->
+            <div class="mb-6">
+                <InputLabel for="password_confirmation" value="Confirm Password" class="block text-gray-300 mb-2 text-sm font-medium" />
                 <TextInput
                     id="password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
                     v-model="form.password_confirmation"
                     required
                     autocomplete="new-password"
+                    placeholder="Confirm your password"
                 />
-
-                <InputError
-                    class="mt-2"
-                    :message="form.errors.password_confirmation"
-                />
+                <InputError class="mt-2 text-red-400 text-xs" :message="form.errors.password_confirmation" />
             </div>
 
-            <div class="mt-4 flex items-center justify-end">
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                 <Link
                     :href="route('login')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    class="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200"
                 >
-                    Already registered?
+                    Already have an account?
                 </Link>
 
                 <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
+                    class="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                    :class="{ 'opacity-75 cursor-not-allowed': form.processing }"
                     :disabled="form.processing"
                 >
-                    Register
+                    <span v-if="form.processing" class="flex items-center">
+                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Creating...
+                    </span>
+                    <span v-else>Create Account</span>
                 </PrimaryButton>
             </div>
         </form>

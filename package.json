@@ -20,6 +20,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "@vueuse/core": "^14.1.0"
+        "@vueuse/core": "^14.1.0",
+        "gsap": "^3.14.2"
     }
 }
