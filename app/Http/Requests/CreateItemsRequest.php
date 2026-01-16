@@ -15,7 +15,7 @@ class CreateItemsRequest extends FormRequest
     {
         return [
             'items' => 'required|array|min:1',
-            'items.*.name' => 'required|string|max:255|unique:items,name',
+            'items.*.name' => 'required|string|max:255|unique:items,name|regex:/^[^<>]*$/',
             'items.*.unit_id' => 'required|exists:units,id',
             'items.*.quantity' => 'nullable|numeric|min:0',
         ];

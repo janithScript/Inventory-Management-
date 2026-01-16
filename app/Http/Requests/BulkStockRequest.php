@@ -16,7 +16,7 @@ class BulkStockRequest extends FormRequest
         return [
             'operations' => 'required|array|min:1',
             'operations.*.item_id' => 'required|exists:items,id',
-            'operations.*.quantity' => 'required|numeric|min:0.01',
+            'operations.*.quantity' => 'required|numeric|min:0.01|max:999999',
         ];
     }
 

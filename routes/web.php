@@ -7,9 +7,25 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/welcome', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('welcome');
+
 Route::get('/', function () {
-    return redirect()->route('inventory.index');
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->route('inventory.index');
+    }
+    return redirect()->route('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return redirect()->route('inventory.index');
+})->name('dashboard');
 
 // In routes/web.php - add rate limiting
 Route::middleware(['auth', 'throttle:60,1'])->group(function () {
